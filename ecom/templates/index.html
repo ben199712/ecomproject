@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+  <div class="">
+    <div class="">
+        <img style="width: 100% !important; height: 60vh;" src="{% static 'img/image.jpg' %}">
+    </div>
+  </div>
+  <div class="py-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto my-2 text-center">
+                <h1 class="text-capitalize fw-bold">All Products</h1>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+        {% for i in '12345678' %}
+          <div class="col-9 mx-auto col-md-6 col-lg-3">
+            <div class="card mb-5">
+                <div class="p-4">
+                    <img src="{% static 'img/product-1.png' %}" class="card-img-top" alt="" >
+                </div>
+                <div class="card-footer d-flex justify-content-between">
+                    <p class="fw-bold mb-0">Galaxy s10</p>
+                    <h5 class="text-info fst-italic mb-0">$400</h5>
+                </div>
+            </div>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+{% endblock content %}

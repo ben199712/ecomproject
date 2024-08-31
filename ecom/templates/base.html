@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <title>ecom</title>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a href="" class="navbar-brand "><i class="fa fa-shopping-cart fa-2x text-warning"></i></a>
+        <button type="button" class="navbar-toggler text-light" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse ms-3" id="nav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown"><a href="" class="nav-link text-uppercase fw-bold  dropdown-toggle" data-bs-toggle="dropdown">Categories
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="">category 1</a>
+                        <a class="dropdown-item" href="">category 2</a>
+                        <a class="dropdown-item" href="">category 3</a>
+                        <a class="dropdown-item" href="">category 4</a>
+                    </div>
+                </a></li>
+                <li class="nav-item"><a href="" class="nav-link text-uppercase fw-bold">Contact</a></li>
+                <li class="nav-item"><a href="" class="nav-link text-uppercase fw-bold">About</a></li>
+            </ul>
+    
+            <form class="d-flex ms-auto me-4">
+                <div class="input-group">
+                    <input type="text" placeholder="SEARCH" class="form-control-sm">
+                </div>
+                <div class="input-group">
+                    <button type="button" class="btn btn-warning" name="button"><i class="fa fa-search"></i></button>
+                </div>
+            </form>
+        </div>
+        
+    </nav>
+    
+    {% block content %}
+      
+    {% endblock content %}
+</body>
+</html>

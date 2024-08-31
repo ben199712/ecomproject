@@ -1,0 +1,12 @@
+.card-footer {
+    background: transparent;
+    border-color: transparent;
+}
+
+.card {
+    border-color: transparent;
+}
+
+.card:hover {
+    box-shadow: 5px 5px 5px 5px whitesmoke !important;
+}
