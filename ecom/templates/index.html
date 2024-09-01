@@ -20,15 +20,17 @@
 
   <div class="container">
     <div class="row">
-        {% for i in '12345678' %}
+        {% for product in products %}
           <div class="col-9 mx-auto col-md-6 col-lg-3">
             <div class="card mb-5">
-                <div class="p-4">
-                    <img src="{% static 'img/product-1.png' %}" class="card-img-top" alt="" >
-                </div>
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                {% else %}
+                    <img src="{% static 'product-1.png' %}" class="card-img-top" alt="No image available">
+                {% endif %}
                 <div class="card-footer d-flex justify-content-between">
-                    <p class="fw-bold mb-0">Galaxy s10</p>
-                    <h5 class="text-info fst-italic mb-0">$400</h5>
+                    <p class="fw-bold mb-0">{{product.name}}</p>
+                    <h5 class="text-info fst-italic mb-0">{{product.price}}</h5>
                 </div>
             </div>
           </div>
