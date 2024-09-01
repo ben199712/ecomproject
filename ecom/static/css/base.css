@@ -10,3 +10,15 @@
 .card:hover {
     box-shadow: 5px 5px 5px 5px whitesmoke !important;
 }
+
+.product-title {
+    text-transform: uppercase !important;
+    letter-spacing: 0.2rem !important;
+    padding-top: 18px !important;
+    padding-bottom: 10px !important;
+}
+
+.product-description {
+    text-transform: uppercase !important;
+    letter-spacing: 0.2rem !important;
+}
