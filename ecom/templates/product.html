@@ -5,19 +5,19 @@
   <div class="container py-5">
     <div class="row mt-5">
         <div class="col-10 me-auto col-md-6">
-            <img src="{% static 'img/product-5.png' %}" alt="">
+            <img src="{{product.image.url}}" alt="">
         </div>
         <div class="col-10 ms-auto col-md-6 my-3">
             <div class="">
-                <h1 class="product-title text-uppercase">HTC One</h1>
-                <p class="fs-3">$300</p>
+                <h1 class="product-title text-uppercase">{{product.name}}</h1>
+                <p class="fs-3">${{product.price}}</p>
                 <p class="product-description  fs-4 fw-bold text-uppercase">Product Description</p>
-                <p class="product-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reiciendis 
-                    eos est nesciunt similique et provident nemo odit expedita ea nihil. Lorem ipsum dolor
-                     sit amet consectetur adipisicing elit. Delectus 
-                    commodi pariatur aliquid quidem, corrupti ad neque fugit facere cumque odio.
-                </p>
-                <p class="product-text fs-4">Out Of Stock</p>
+                <p class="product-text">{{product.description}}</p>
+                {% if prodcut.stock <= 0 %}
+                    <p class="product-text fs-4">Out Of Stock</p>
+                {% else %}
+                    <a href="{% url 'add_cart' product.id %}" class="btn btn-lg bg-dark text-white">Add To Cart</a>
+                {% endif %}
             </div>
         </div>
     </div>

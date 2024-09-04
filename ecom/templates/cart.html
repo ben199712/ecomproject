@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+{% if not cart_items %}
+  <div class="text-center">
+    <br>
+    <h1 class="text-center product-title">Your Shopping Cart Is Empty</h1>
+    <br>
+    <p class="text-center">Please Click <a href="{% url 'index' %}">Here</a>to Continue Shopping</p>
+  </div>
+{% else %}
+  <div class="text-center">
+    <br>
+    <div class="text-center fw-bold fs-4">Your Shopping Cart</div>
+    <div class="row mx-auto">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            <table class="table cart_table">
+                <thead class="cart_head">
+                    <tr>
+                        <th colspan="4">
+                            Your Items
+                        </th>
+                    </tr>
+                </thead>
+                {% for cart_item in cart_items %}
+                  <tr>
+                    <td>
+                        <a href="cart_item.product.get_url">
+                            <img src="{{cart_item.product.image.url}}" width="100px" height="100px" alt="">
+                        </a>
+                    </td>
+                    <td class="text-start">
+                        {{cart_item.product.name}}
+                        <br>
+                        SKU:{{cart_item.product.id}}
+                        <br>
+                        Unit Price: {{cart_item.product.Price}}
+                        <br>
+                        Qty: {{cart_item.product.Price}} * {{cart_item.quantity}}
+                    </td>
+                    <td>
+                        ${{cart_item.sub_total}}
+                    </td>
+                    {% if cart_item.quantity < cart_item.product.stock %}
+                        <td>
+                            &nbsp;<a href="{% url 'add_cart' cart_item.product.id %}"><i class="fa fa-plus-circle cart_icon"></i></a>
+                            &nbsp;<a href=""><i class="fa fa-minus-circle cart_icon "></i></a>
+                            &nbsp;<a href=""><i class="fa fa-trash text-danger "></i></a>
+                        </td>  
+                    {% else %}
+                        &nbsp;<a href=""><i class="fa fa-minus-circle cart_icon "></i></a>
+                        &nbsp;<a href=""><i class="fa fa-trash text-danger "></i></a>
+                    {% endif %}  
+                  </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-center">
+            <table class="table cart_table">
+                <thead class="cart_head">
+                    <tr>
+                        <th colspan="4">
+                            Check out
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Please Review Your Cart items Before Proceeding to Payment.
+                        </td>
+                    </tr>
+                    <tr class="">
+                        <td class="text-start">
+                            Your Total Is: <strong>${{total}}</strong> 
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="mx-auto">
+                <a href="{% url 'index' %}" class="text-decoration-none">
+                    <button type="button" class="btn btn-lg btn-block bg-dark text-white">Continue Shopping</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endif %}
+{% endblock content %}
