@@ -29,6 +29,14 @@
                 </a></li>
                 <li class="nav-item"><a href="" class="nav-link text-uppercase fw-bold">Contact</a></li>
                 <li class="nav-item"><a href="" class="nav-link text-uppercase fw-bold">About</a></li>
+                {% if item_count > 0  %}
+                    <li class="nav-item">
+                        <a href="{% url 'cart_detail' %}" class="nav-link text-uppercase fw-bold">
+                            <i class="fa fa-shopping-cart">({{item_count}})</i>
+                    </a>  
+                {% endif %}
+                
+            </li>
             </ul>
     
             <form class="d-flex ms-auto me-4">

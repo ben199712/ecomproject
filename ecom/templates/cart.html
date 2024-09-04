@@ -46,12 +46,12 @@
                     {% if cart_item.quantity < cart_item.product.stock %}
                         <td>
                             &nbsp;<a href="{% url 'add_cart' cart_item.product.id %}"><i class="fa fa-plus-circle cart_icon"></i></a>
-                            &nbsp;<a href=""><i class="fa fa-minus-circle cart_icon "></i></a>
-                            &nbsp;<a href=""><i class="fa fa-trash text-danger "></i></a>
+                            &nbsp;<a href="{% url 'cart_remove' cart_item.product.id %}"><i class="fa fa-minus-circle cart_icon "></i></a>
+                            &nbsp;<a href="{% url 'remove_product' cart_item.product.id %}"><i class="fa fa-trash text-danger "></i></a>
                         </td>  
                     {% else %}
-                        &nbsp;<a href=""><i class="fa fa-minus-circle cart_icon "></i></a>
-                        &nbsp;<a href=""><i class="fa fa-trash text-danger "></i></a>
+                        &nbsp;<a href="{% url 'cart_remove' cart_item.product.id %}"><i class="fa fa-minus-circle cart_icon "></i></a>
+                        &nbsp;<a href="{% url 'remove_product' cart_item.product.id %}"><i class="fa fa-trash text-danger "></i></a>
                     {% endif %}  
                   </tr>
                 {% endfor %}

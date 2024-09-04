@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ecom.views import index, productPage, cart_detail, add_cart
+from ecom.views import index, productPage, cart_detail, add_cart, cart_remove, remove_product
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -27,6 +27,8 @@ urlpatterns = [
     path('category/<slug:category_slug>', index, name='products_by_category'),
     path('category/<slug:category_slug>/<slug:product_slug>', productPage, name='product_detail'),
     path('cart/add/<int:product_id>,', add_cart, name='add_cart'),
+    path('cart/remove/<int:product_id>,', cart_remove, name='cart_remove'),
+    path('cart/remove_product/<int:product_id>,', remove_product, name='remove_product'),
     path('cart', cart_detail, name='cart_detail'),
 ]
 
