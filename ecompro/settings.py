@@ -140,4 +140,10 @@ JAZZMIN_SETTINGS = {
     # more customization options...
 }
 
+# settings.py
+
+PAYSTACK_PUBLIC_KEY = 'pk_test_36a27759ac47178d90179cd18a39348c18e9afae'
+PAYSTACK_SECRET_KEY = 'sk_test_007b145e68a5fcf67fb50f5cb63ac40283c18fdb'
+PAYSTACK_BASE_URL = 'https://api.paystack.co'
+
 

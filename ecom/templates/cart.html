@@ -80,6 +80,11 @@
                 </tbody>
             </table>
             <div class="mx-auto">
+                <!-- Checkout Form -->
+                    <form method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary btn-md mb-1">Checkout with Paystack</button>
+                    </form>
                 <a href="{% url 'index' %}" class="text-decoration-none">
                     <button type="button" class="btn btn-lg btn-block bg-dark text-white">Continue Shopping</button>
                 </a>

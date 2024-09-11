@@ -1,6 +1,9 @@
+import requests
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Category, Product, Cart, CartItem
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
+from django.http import JsonResponse
 
 # Create your views here.
 def index(request, category_slug=None):
@@ -58,7 +61,53 @@ def cart_detail(request, total=0, counter=0, cart_items=None):
     except ObjectDoesNotExist:
         pass
 
+    
+    if request.method == "POST":
+        # Initiate Paystack Payment
+        email = request.user.email  # Assuming you have user authentication
+        amount = int(total * 100)  # Paystack expects amount in kobo (100 kobo = 1 Naira)
+
+        headers = {
+            'Authorization': f'Bearer {settings.PAYSTACK_SECRET_KEY}',
+            'Content-Type': 'application/json',
+        }
+
+        data = {
+            "email": email,
+            "amount": amount,
+            "callback_url": "http://127.0.0.1:8000/payment/callback/",  # Adjust callback URL to your actual URL
+        }
+
+        response = requests.post(f'{settings.PAYSTACK_BASE_URL}/transaction/initialize', json=data, headers=headers)
+        response_data = response.json()
+
+        if response_data['status']:
+            authorization_url = response_data['data']['authorization_url']
+            return redirect(authorization_url)
+        else:
+            return render(request, 'error.html', {'message': 'Payment initialization failed.'})
+
     return render(request, 'cart.html', dict(cart_items = cart_items, total = total, counter = counter))
+
+
+# Callback for paystack payment verification
+
+def payment_callback(request):
+    reference = request.GET.get('reference')
+
+    headers = {
+        'Authorization': f'Bearer {settings.PAYSTACK_SECRET_KEY}',
+    }
+
+    response = requests.get(f'{settings.PAYSTACK_BASE_URL}/transaction/verify/{reference}', headers=headers)
+    response_data = response.json()
+
+    if response_data['status'] and response_data['data']['status'] == 'success':
+        # Payment was successful
+        return JsonResponse({'message': 'Payment successful!'})
+    else:
+        # Payment failed
+        return JsonResponse({'error': 'Payment verification failed.'})
 
 
 def cart_remove(request, product_id):

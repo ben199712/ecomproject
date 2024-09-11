@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from ecom.views import index, productPage, cart_detail, add_cart, cart_remove, remove_product
+from ecom.views import index, productPage, cart_detail, add_cart, cart_remove, remove_product, payment_callback
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -30,6 +30,7 @@ urlpatterns = [
     path('cart/remove/<int:product_id>,', cart_remove, name='cart_remove'),
     path('cart/remove_product/<int:product_id>,', remove_product, name='remove_product'),
     path('cart', cart_detail, name='cart_detail'),
+     path('payment/callback/', payment_callback, name='payment_callback'),  # Handle payment callback
 ]
 
 
